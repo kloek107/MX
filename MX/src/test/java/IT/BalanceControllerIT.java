@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 import java.net.URL;
 
 import api.mx.MXAPI;
+import api.mx.data.BalanceVO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,9 +18,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.ws.rs.core.Response;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MXAPI.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class BalanceControllerIT {
+public class BalanceControllerIT extends AbstractIT {
 
   @LocalServerPort
   private int port;
@@ -35,25 +38,13 @@ public class BalanceControllerIT {
   }
 
   @Test
-  public void checkBalance() {
-    ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
+  public void testCheckBalance() {
+    ResponseEntity<BalanceVO> response = template.getForEntity(base.toString() + "/account/balance", BalanceVO.class);
 
-    String body = response.getBody();
+    BalanceVO balanceVO = BalanceVO.class.cast(response.getBody());
 
-    System.out.println(body);
-
-    assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-  }
-
-  @Test
-  public void checkBalance2() {
-    ResponseEntity<String> response = template.getForEntity(base.toString() + "account/balance", String.class);
-
-    String body = response.getBody();
-
-    System.out.println(body);
+    System.out.println(balanceVO);
 
     assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
   }
-
 }

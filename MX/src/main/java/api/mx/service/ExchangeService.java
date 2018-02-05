@@ -10,11 +10,11 @@ public class ExchangeService {
   @Autowired
   private DataService dataService;
 
-  public ExchangeInfoVO getCurrentExchangeRate(CurrencyRequestVO currencyRequestVO) {
-    return dataService.getExchangeInfo(currencyRequestVO);
-  }
-
   public ExchangeGraphInfo getExchangeGraphInfo(CurrencyRequestVO currencyRequestVO) {
     return dataService.getExchangeGraphInfo(currencyRequestVO);
+  }
+
+  public ExchangeInfoVO getCurrentExchangeRate(CurrencyRequestVO currencyRequestVO) {
+    return dataService.getExchangeInfo(currencyRequestVO);
   }
 }

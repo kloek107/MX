@@ -7,7 +7,6 @@ api/mx/data/TransactionVO.class
 api/mx/service/EncryptionService.class
 api/mx/service/DataService.class
 api/mx/presentation/TransactionController.class
-api/mx/presentation/test.class
 api/mx/service/ValidationService.class
 api/mx/service/AccountService.class
 api/mx/constants/ApiResponse.class
